@@ -1,0 +1,80 @@
+# -*- mode: org; fill-column: 78; -*-
+#+STARTUP: content hidestars odd
+#+OPTIONS: toc:nil
+#+LaTeX_CLASS: brief
+
+* Optionen
+#+LaTeX_HEADER: \faltmarken
+#+LaTeX_HEADER: \fenstermarken
+#+LaTeX_HEADER: %% \lochermarke
+#+LaTeX_HEADER: \trennlinien
+#+LaTeX_HEADER: \Anlagen             {}
+#+LaTeX_HEADER: \Verteiler           {}
+
+* Kontaktdaten
+#+LaTeX_HEADER: \Name                {Foo Bar}
+#+LaTeX_HEADER: \NameZeileA          {{\bf Foo Bar}}
+#+LaTeX_HEADER: \AdressZeileA        {Leetnitzstr. 14}
+#+LaTeX_HEADER: \AdressZeileB        {12345 Roflheim}
+#+LaTeX_HEADER: \TelefonZeileA       {Festnetz: +49 123 456789}
+#+LaTeX_HEADER: \TelefonZeileB       {Mobil: +49 987 654321}
+#+LaTeX_HEADER: %% \InternetZeileA      {user@example.com}
+#+LaTeX_HEADER: %% \InternetZeileB      {http://example.com}
+
+* Abenderadresse
+#+LaTeX_HEADER: \RetourAdresse       {
+#+LaTeX_HEADER:   Foo Bar
+#+LaTeX_HEADER:   $\cdot$
+#+LaTeX_HEADER:   Leetnitzstr. 14a
+#+LaTeX_HEADER:   $\cdot$
+#+LaTeX_HEADER:   12345 Roflheim
+#+LaTeX_HEADER: }
+
+* Versandadresse
+  :PROPERTIES:
+  :VISIBILITY: all
+  :END:
+#+ADRESSE: Aenean aliquam viverra
+#+ADRESSE: Vivamuseuismodstr. 19
+#+ADRESSE: Postfach 13 37
+#+ADRESSE: 12345 Berlin
+
+* Brief
+  :PROPERTIES:
+  :VISIBILITY: all
+  :END:
+#+BETREFF: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+#+DATUM: \today
+
+*** Text
+#+ANREDE: Sehr geehrte Damen und Herren,
+
+    Phasellus tempus quam nec nunc blandit blandit. Cras non nunc. Donec
+    venenatis semper nunc id interdum. Donec neque lectus, commodo ac viverra
+    id, euismod eu nisl. Nullam eros mi, dapibus at mollis placerat, pharetra
+    a diam. Morbi sed ipsum enim, commodo ultricies risus. Mauris non nisl at
+    quam convallis dapibus. Maecenas tempor adipiscing risus, eu tempor eros
+    consectetur non. Pellentesque habitant morbi tristique senectus et netus
+    et malesuada fames ac turpis egestas. Pellentesque non hendrerit nisl.
+    Duis et felis sit amet turpis pulvinar cursus at quis risus.
+
+    Aenean aliquam viverra arcu sed pulvinar. Aliquam eu dolor lacus, eget
+    gravida odio. Nunc rhoncus molestie faucibus. Mauris sit amet elit auctor
+    elit adipiscing tincidunt. Sed venenatis est id massa aliquam aliquet
+    posuere nibh commodo. Vivamus euismod felis a dui sollicitudin sed
+    ultrices libero suscipit. In convallis, est et pharetra molestie, mi neque
+    sodales ligula, eget blandit massa sapien egestas purus. In pretium
+    adipiscing sodales. Nam rhoncus est adipiscing augue vulputate porttitor.
+    Nunc gravida pretium tellus in dapibus. Donec adipiscing neque vel velit
+    adipiscing vel mollis metus pharetra. Nullam leo diam, suscipit sed
+    tristique eget, rhoncus quis nisi. Ut pellentesque bibendum turpis, nec
+    vestibulum ipsum hendrerit in. Duis consectetur metus a mauris molestie
+    venenatis. Cras ut odio turpis, ut convallis quam.
+
+#+GRUSS: Mit freundlichen Grüßen,
+#+UNTERSCHRIFT: Benjamin Andresen
+
+* Ende
+  #+begin_latex
+    \end{g-brief}
+  #+end_latex
