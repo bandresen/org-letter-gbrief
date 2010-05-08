@@ -11,7 +11,7 @@
                ("%%" . "%%")
                ("\\begin{g-brief}" . "\\end{g-brief}")))
 
-(defun ba/org-letter-option-get (option)
+(defun org-letter-option-get (option)
   (save-excursion
     (save-restriction
       (widen)
@@ -22,38 +22,48 @@
         results))))
 
 
-(setq ba/org-letter-options-format-alist '(("Anrede" . "{%s}")
-                                           ("Unterschrift" . "{%s}")
-                                           ("Gruss" . "{%s}{1cm}")
-                                           ("Betreff" . "{%s}")
-                                           ("Datum" . "{%s}")
-                                           ("Adresse" . "{%s}")
-                                           ("IhrZeichen" . "{%s}")
-                                           ("IhrSchreiben" . "{%s}")
-                                           ("MeinZeichen" . "{%s}")))
+(setq org-letter-options-format-alist '(("Anrede" . "{%s}")
+                                        ("Unterschrift" . "{%s}")
+                                        ("Gruss" . "{%s}{1cm}")
+                                        ("Betreff" . "{%s}")
+                                        ("Datum" . "{%s}")
+                                        ("Adresse" . "{%s}")
+                                        ("IhrZeichen" . "{%s}")
+                                        ("IhrSchreiben" . "{%s}")
+                                        ("MeinZeichen" . "{%s}")))
 
-(defun ba/org-letter-p ()
+(defun org-letter-buffer-brief-p ()
   (string= "brief" (plist-get (org-infile-export-plist) :latex-class)))
 
-(defun ba/org-letter-add-options-to-latex-headers ()
-  (when (ba/org-letter-p)
+(defun org-letter-add-options-to-latex-headers ()
+  (when (org-letter-buffer-brief-p)
     (let* ((current-headers (plist-get org-export-latex-options-plist
                                        :latex-header-extra))
            (new-headers (mapconcat '(lambda (x)
-                                     (when (ba/org-letter-option-get (car x))
-                                       (let ((lst (ba/org-letter-option-get (car x))))
+                                     (when (org-letter-option-get (car x))
+                                       (let ((lst (org-letter-option-get (car x))))
                                          (concat "\n" "\\" (car x) " "
                                                  (format (cdr x)
                                                          (if (> (length lst) 1)
                                                              (mapconcat 'identity (reverse lst) "\\\\")
                                                              (car lst)))))))
-                                   ba/org-letter-options-format-alist "")))
+                                   org-letter-options-format-alist "")))
       (plist-put org-export-latex-options-plist
                  :latex-header-extra (concat current-headers new-headers)))))
 
-(add-hook 'org-export-latex-after-initial-vars-hook 'ba/org-letter-add-options-to-latex-headers)
+(add-hook 'org-export-latex-after-initial-vars-hook 'org-letter-add-options-to-latex-headers)
+
+(defun org-letter-add-gbrief-end-section ()
+  (let ((gbrief-p (string-match "\\\\documentclass\\(\\[[^][]*?\\]\\)?{g-brief2}"
+                                org-export-latex-header)))
+    (when gbrief-p
+      (goto-char (point-max))
+      (forward-line -1)
+      (insert "\\end{g-brief}"))))
+
+(add-hook 'org-export-latex-final-hook 'org-letter-add-gbrief-end-section)
 
 ; hack because `org-export-latex-title-command' is not allowed to be set via file local variables (**)
 (add-hook 'org-export-first-hook '(lambda ()
-                                   (when (ba/org-letter-p)
+                                   (when (org-letter-buffer-brief-p)
                                      (set (make-local-variable 'org-export-latex-title-command) ""))))

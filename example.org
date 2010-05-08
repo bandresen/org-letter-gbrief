@@ -21,7 +21,7 @@
 #+LaTeX_HEADER: %% \InternetZeileA      {user@example.com}
 #+LaTeX_HEADER: %% \InternetZeileB      {http://example.com}
 
-* Abenderadresse
+* Absenderadresse
 #+LaTeX_HEADER: \RetourAdresse       {
 #+LaTeX_HEADER:   Foo Bar
 #+LaTeX_HEADER:   $\cdot$
@@ -72,9 +72,4 @@
     venenatis. Cras ut odio turpis, ut convallis quam.
 
 #+GRUSS: Mit freundlichen Grüßen,
-#+UNTERSCHRIFT: Benjamin Andresen
-
-* Ende
-  #+begin_latex
-    \end{g-brief}
-  #+end_latex
+#+UNTERSCHRIFT: Foo Bar
